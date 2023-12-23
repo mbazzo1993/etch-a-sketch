@@ -5,21 +5,37 @@
 const STARTING_DIM = 16;
 let currentDIM = STARTING_DIM;
 let elemCanvas = document.getElementById('canvas');
+let elemInput = document.getElementById('input');
 
 /**
  * ADD EVENT LISTENERS
  */
 
 addEventListener('DOMContentLoaded', setUpCanvas);
+
 elemCanvas.addEventListener('mouseover', (event) => {
     if(event.target.id !== 'canvas') {
         event.target.classList.add('pixel-colored');
     }
 });
 
+elemInput.addEventListener('input', (event) => {
+    if(event.target.id === 'grid-size') {
+        currentDIM = event.target.value;
+        clearCanvas();
+        setUpCanvas();
+    }
+});
+
 /**
  * SUPPORTING FUNCTIONS
  */
+
+function clearCanvas() {
+    while (elemCanvas.lastElementChild) {
+        elemCanvas.removeChild(elemCanvas.lastElementChild);
+    }
+}
 
 function setUpCanvas() {
 
