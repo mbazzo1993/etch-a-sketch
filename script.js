@@ -4,14 +4,20 @@
 
 const STARTING_DIM = 16;
 const DARKENING_DECREMENT = 26
-let currentDIM = STARTING_DIM;
-let elemCanvas = document.getElementById('canvas');
-let elemInput = document.getElementById('input');
-let elemColorSettingBlack = document.getElementById('black');
-let elemColorSettingRandom = document.getElementById('random');
-let elemColorSettingDarkening = document.getElementById('darkening');
-let elemResTxt = document.getElementById('res-txt');
-let elemClearBtn = document.getElementById('clear');
+let currentDim = STARTING_DIM;
+const elemCanvas = document.getElementById('canvas');
+const elemInput = document.getElementById('input');
+const elemColorSettingBlack = document.getElementById('black');
+const elemColorSettingRandom = document.getElementById('random');
+const elemColorSettingDarkening = document.getElementById('darkening');
+const elemColorSettingChoose = document.getElementById('pick-color');
+const elemColorSettingInput = document.getElementById('color-setting-input');
+const elemRSlider = document.getElementById('r-slide');
+const elemGSlider = document.getElementById('g-slide');
+const elemBSlider = document.getElementById('b-slide');
+const elemColorSliders = document.getElementById('rgb-sliders');
+const elemResTxt = document.getElementById('res-txt');
+const elemClearBtn = document.getElementById('clear');
 
 /**
  * ADD EVENT LISTENERS
@@ -43,13 +49,19 @@ elemCanvas.addEventListener('mouseover', (event) => {
                 event.target.style.backgroundColor = `rgb(${255 - DARKENING_DECREMENT},${255 - DARKENING_DECREMENT},${255 - DARKENING_DECREMENT})`;
             }
         }
+
+        if (elemColorSettingChoose.checked) {
+            event.target.style.backgroundColor = `rgb(${elemRSlider.value},${elemGSlider.value},${elemBSlider.value})`;
+        }
+
+
     }
 });
 
 elemInput.addEventListener('input', (event) => {
     if(event.target.id === 'grid-size') {
-        currentDIM = event.target.value;
-        elemResTxt.textContent = `Current Resolution = ${currentDIM} x ${currentDIM}`
+        currentDim = event.target.value;
+        elemResTxt.textContent = `Current Resolution = ${currentDim} x ${currentDim}`
         clearCanvas();
         setUpCanvas();
     }
@@ -58,6 +70,14 @@ elemInput.addEventListener('input', (event) => {
 elemClearBtn.addEventListener('click', () => {
     clearCanvas();
     setUpCanvas();
+});
+
+elemColorSettingInput.addEventListener('click', (event) => {
+    if (event.target.value === 'pick-color') {
+        elemColorSliders.style.display = 'flex';
+    } else if (event.target.name === 'color-setting') { // only hide if other radio selected
+        elemColorSliders.style.display = 'none';
+    }
 });
 
 /**
@@ -71,14 +91,14 @@ function clearCanvas() {
 }
 
 function setUpCanvas() {
-    for (let i = 0; i < currentDIM; i++) {
+    for (let i = 0; i < currentDim; i++) {
         let newCol = document.createElement('div');
-        newCol.width = `${elemCanvas.width / currentDIM}%`;
+        newCol.width = `${elemCanvas.width / currentDim}%`;
         newCol.heigth = `100%`;
         newCol.classList.add("canvas-col");
         elemCanvas.appendChild(newCol);
 
-        for (let j = 0; j < currentDIM; j++) {
+        for (let j = 0; j < currentDim; j++) {
             let newPixel = document.createElement('div');
             newPixel.width = `100%`;
             newPixel.heigth = `100%`;

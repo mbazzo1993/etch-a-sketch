@@ -37,6 +37,16 @@ body {
     border-radius: 5px;
 }
 
+#rgb-sliders {
+    display: none;
+    flex-direction: column; 
+    padding-left: 10px;
+}
+
+#rgb-sliders input {
+    width: 60%; 
+}
+
 #clear {
     margin-top: 40px;
     padding: 10px 30px 10px 30px;

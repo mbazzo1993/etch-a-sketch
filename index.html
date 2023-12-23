@@ -26,6 +26,24 @@
                         <input type="radio" id="darkening" name="color-setting" value="darkening">
                         <label>Darkening Effect</label>
                     </div>
+                    <div>
+                        <input type="radio" id="pick-color" name="color-setting" value="pick-color">
+                        <label>Choose Color</label>
+                    </div>
+                    <div id="rgb-sliders">
+                        <div>
+                            <input type="range" id="r-slide" min="0" max="255" value="16" />
+                            <label>R</label>
+                        </div>
+                        <div>
+                            <input type="range" id="g-slide" min="0" max="255" value="16" />
+                            <label>G</label>
+                        </div>
+                        <div>
+                            <input type="range" id="b-slide" min="0" max="255" value="16" />
+                            <label>B</label>
+                        </div>
+                    </div>
                 </div>
                 <button id="clear">Clear</button>
             </div>
