@@ -11,6 +11,11 @@ let elemCanvas = document.getElementById('canvas');
  */
 
 addEventListener('DOMContentLoaded', setUpCanvas);
+elemCanvas.addEventListener('mouseover', (event) => {
+    if(event.target.id !== 'canvas') {
+        event.target.classList.add('pixel-colored');
+    }
+});
 
 /**
  * SUPPORTING FUNCTIONS
