@@ -11,6 +11,7 @@ let elemColorSettingBlack = document.getElementById('black');
 let elemColorSettingRandom = document.getElementById('random');
 let elemColorSettingDarkening = document.getElementById('darkening');
 let elemResTxt = document.getElementById('res-txt');
+let elemClearBtn = document.getElementById('clear');
 
 /**
  * ADD EVENT LISTENERS
@@ -52,6 +53,11 @@ elemInput.addEventListener('input', (event) => {
         clearCanvas();
         setUpCanvas();
     }
+});
+
+elemClearBtn.addEventListener('click', () => {
+    clearCanvas();
+    setUpCanvas();
 });
 
 /**
